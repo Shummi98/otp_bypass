@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyber Help Center</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: white;
+    }
+
+/* FIXED NAVBAR */
+nav {
+    width: 100%;
+    background: #1e293b;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-wrap: nowrap;        /* prevents breaking */
+}
+
+/* LOGO */
+.nav-left {
+    font-size: 22px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* LINKS */
+.nav-links {
+    display: flex;
+    gap: 18px;
+    flex-shrink: 1;            /* allows resize */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #cbd5e1;
+    font-size: 16px;
+    white-space: nowrap;
+}
+.nav-links a:hover {
+    color: #38bdf8;
+}
+
+/* LOGIN BUTTON FIXED */
+.login-btn {
+    padding: 10px 20px;
+    background: #38bdf8;
+    color: black;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;            /* DO NOT ALLOW shrinking */
+}
+.login-btn:hover {
+    background: #0ea5e9;
+}
+
+
+
+
+    /* HERO SECTION */
+    .hero {
+        padding: 120px 20px;
+        text-align: center;
+        background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+        height: 350px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-blend-mode: multiply;
+        background-color: rgba(0,0,0,0.6);
+    }
+
+    .hero h1 {
+        font-size: 45px;
+        margin-bottom: 10px;
+    }
+
+    .hero p {
+        font-size: 18px;
+        width: 60%;
+        margin: auto;
+        opacity: 0.9;
+    }
+
+
+
+    /* SERVICES */
+    .services {
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    .services h2 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    .service-boxes {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .box {
+        background: #1e293b;
+        padding: 25px;
+        width: 260px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        transition: 0.3s;
+    }
+
+    .box:hover {
+        transform: translateY(-5px);
+        background: #334155;
+    }
+
+    .box h3 {
+        margin-bottom: 10px;
+    }
+
+
+    /* ABOUT US */
+    .about {
+        padding: 50px 20px;
+        background: #0f172a;
+        text-align: center;
+    }
+
+
+    /* FOOTER */
+    footer {
+        padding: 15px;
+        text-align: center;
+        background: #1e293b;
+        margin-top: 40px;
+        color: #cbd5e1;
+    }
+
+
+
+    /* LOGIN POPUP */
+    .popup-bg {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.55);
+        backdrop-filter: blur(4px);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .popup-box {
+        width: 350px;
+        background: #1e293b;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        animation: fade 0.3s ease;
+    }
+
+    @keyframes fade {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 12px 0;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #38bdf8;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:hover { background: #0ea5e9; }
+
+    .resend {
+        text-align: center;
+        margin-top: 10px;
+        opacity: 0.8;
+        cursor: pointer;
+    }
+
+    .disabled {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+
+    .success {
+        color: #22c55e;
+        text-align: center;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="nav-left">Cyber Help Center</div>
+
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div class="login-btn" onclick="openPopup()">Login</div>
+</nav>
+
+
+
+
+<!-- HERO SECTION -->
+<div class="hero">
+    <h1>Your Online Safety is Our Priority</h1>
+    <p>We help victims facing blackmail, cyber fraud, threats, privacy leaks, hacked accounts & more by providing expert cyber assistance.</p>
+</div>
+
+
+
+<!-- SERVICES -->
+<section class="services">
+    <h2>Our Services</h2>
+
+    <div class="service-boxes">
+        <div class="box">
+            <h3>Cyber Complaint Support</h3>
+            <p>We guide you on how to report online harassment, fraud & blackmail safely.</p>
+        </div>
+
+        <div class="box">
+            <h3>Digital Privacy Help</h3>
+            <p>We assist in keeping your data safe from leaks, hacking & online tracking.</p>
+        </div>
+
+        <div class="box">
+            <h3>Account Recovery</h3>
+            <p>We help you recover hacked Facebook, Instagram or Gmail accounts.</p>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- ABOUT -->
+<section class="about">
+    <h2>About Us</h2>
+    <p>Cyber Help Center is a voluntary cyber-support platform that helps people stay safe, understand cyber threats, and recover from online incidents.</p>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer>
+    © 2025 Cyber Help Center — All Rights Reserved
+</footer>
+
+
+
+<!-- POPUP LOGIN -->
+<div class="popup-bg" id="popup">
+    <div class="popup-box" id="loginStep">
+        <h2>Login</h2>
+        <input type="text" id="phone" placeholder="Enter Phone Number">
+        <button onclick="sendOTP()">Send OTP</button>
+    </div>
+
+    <div class="popup-box" id="otpStep" style="display:none;">
+        <h2>Verify OTP</h2>
+        <input type="text" maxlength="6" id="otp" placeholder="Enter 6-digit OTP">
+        <button onclick="verifyOTP()">Verify</button>
+
+        <div class="resend disabled" id="resendBtn" onclick="resendOTP()">
+            Resend OTP (<span id="timer">30</span>s)
+        </div>
+    </div>
+
+    <div class="popup-box" id="successStep" style="display:none;">
+        <h2>Success</h2>
+        <p class="success">OTP Verified Successfully ✔</p>
+    </div>
+</div>
+
+
+
+<script>
+function openPopup() {
+    document.getElementById("popup").style.display = "flex";
+}
+
+function sendOTP() {
+    let phone = document.getElementById("phone").value;
+    if (phone.length < 10) {
+        alert("Enter a valid number");
+        return;
+    }
+
+    document.getElementById("loginStep").style.display = "none";
+    document.getElementById("otpStep").style.display = "block";
+
+    startTimer();
+}
+
+let countdown;
+function startTimer() {
+    let time = 30;
+    const timer = document.getElementById("timer");
+    const btn = document.getElementById("resendBtn");
+
+    btn.classList.add("disabled");
+
+    countdown = setInterval(() => {
+        timer.textContent = time;
+        time--;
+
+        if (time < 0) {
+            btn.classList.remove("disabled");
+            clearInterval(countdown);
+        }
+    }, 1000);
+}
+
+function resendOTP() {
+    if (document.getElementById("resendBtn").classList.contains("disabled")) return;
+
+    alert("New OTP Sent!");
+    startTimer();
+}
+
+function verifyOTP() {
+    let otp = document.getElementById("otp").value;
+
+    if (otp.length !== 6) {
+        alert("Enter valid OTP");
+        return;
+    }
+
+    document.getElementById("otpStep").style.display = "none";
+    document.getElementById("successStep").style.display = "block";
+
+    setTimeout(() => {
+        window.location.href = "dashboard.html"; // dummy redirect
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
